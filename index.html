@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+   練習！！！！
+  <div id="booking" class="ride_section layout_padding">
+    <div class="container">
+      <div class="ride_main">
+
+  <h2 class="ride_text">
+   <span style="color: #f4db31;">メモ作成</span></h2>
+  <h4>メモを作成する</h4>
+      </div>
+    </div>
+  </div>
+
+  
+  <ul class="content">
+      <li class="item">
+          <div  class="memoPad">
+              <div>
+              <input type="text" id="key" style="border: none;">
+              </div>  
+              <div>
+              <textarea id="memo" style="border: none;"></textarea>
+              </div>
+              <div class="spc">
+              <button class="addCard" id="save">Save 💾</button>
+              <!-- <button class="addCard" id="clear">Delete 🗑️</button> -->
+              <button class="addCard" id="clear">Delete 🗑️</button>
+          </div>
+       </li>       
+   </ul>
+
+  <div id="cards" class="cards">
+    <table id="list">
+
+    </table>
+        <!-- ここに追加データが挿入される -->
+  </div>
+  <div><button class="addCard" id="clear1">Delete 🗑️</button></div>
+  
+        
+
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <script>
+
+$("#save").on("click",function(){
+    const key = $("#key").val();
+    const value = $("#memo").val();
+    localStorage.setItem(key,value);
+    const html = '<tr><th>'+key+'</th><td>'+value+'</td></tr>';
+    $("#list").append(html);
+});
+    // let id_array =[];
+    //   let i = 0;
+
+    //   $("#save").on("click",function(){
+    //   id_array.push(i);
+    //   i++;
+    //   // console.log(id_array);
+    //   let id_num = id_array.length-1;
+    //   // console.log(id_num);
+    //   const key = $("#key").val();
+    //   const value = $("#memo").val();
+    //   localStorage.setItem(key,value);
+    //   const html = `<table class="card" id="card${id_num}"><tr class="title"><td>${key}</td></tr><tr class="detail"><td>${value}</td></tr></table>`;
+    //   $("#cards").append(html);
+
+
+  // });
+
+//2.clear クリックイベント
+  $("#clear").on("click",function(){
+      localStorage.clear();
+      // $("#cards").empty();
+      location.reload();
+  });
+
+  $("#clear1").on("click",function(){
+
+      localStorage.clear();
+      $("#cards0").empty();
+      location.reload();
+  });
+
+//3.ページ読み込み：保存データ取得表示
+  // for(let i=0; i<localStorage.length; i++){
+  //     const key   = localStorage.key(i);
+  //     const value = localStorage.getItem(key);
+  //     const html = `<table class="card" id="card${i}"><tr class="title"><td>${key}</td></tr><tr class="detail"><td>${value}</td></tr></table>`;
+  //     $("#cards").append(html);
+  // }
+    
+
+  for(let i=0; i<localStorage.length; i++){
+    const key   = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    const html = '<tr><th>'+key+'</th><td>'+value+'</td></tr>';
+    $("#list").append(html);
+}
+
+</script>
+</body>
+</html>
